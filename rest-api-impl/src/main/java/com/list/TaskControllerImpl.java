@@ -37,4 +37,13 @@ public class TaskControllerImpl implements TaskController {
         return new ResponseEntity("INVALID INPUT", HttpStatus.BAD_REQUEST);
     }
 
+    @Override
+    public ResponseEntity deleteTask(Long id) {
+        if (taskService.taskIdExists(id)) {
+            taskService.deleteTask(id);
+            return new ResponseEntity("TASK DELETED", HttpStatus.OK);
+        }
+        return new ResponseEntity("INVALID REQUEST", HttpStatus.BAD_REQUEST);
+    }
+
 }

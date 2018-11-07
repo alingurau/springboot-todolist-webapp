@@ -14,6 +14,8 @@ public interface TaskService {
 
     void updateTask(Long id, TaskDTO taskDTO);
 
+    void deleteTask(Long id);
+
     public boolean taskIdExists(Long id);
 
 }

@@ -18,4 +18,7 @@ public interface TaskController {
 
     @PutMapping("/editTask/{id}")
     ResponseEntity editTask(@PathVariable Long id, @RequestBody TaskDTO taskDTO);
+
+    @DeleteMapping("/deleteTask/{id}")
+    ResponseEntity deleteTask(@PathVariable Long id);
 }

@@ -40,6 +40,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public void deleteTask(Long id) {
+        taskRepository.findAll().forEach(Task -> {
+            taskRepository.deleteById(id);
+        });
+    }
+
+    @Override
     public boolean taskIdExists(Long id) {
         return taskRepository.findById(id).isPresent();
     }

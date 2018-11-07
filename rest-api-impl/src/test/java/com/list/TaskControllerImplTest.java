@@ -92,4 +92,26 @@ public class TaskControllerImplTest {
         assertEquals(result, expect);
     }
 
+    @Test
+    public void deleteTask_ShouldReturnHttpStatusOk() {
+        Task task = new Task();
+
+        when(taskServiceMock.taskIdExists(task.getId())).thenReturn(true);
+        ResponseEntity result = taskControllerImpl.deleteTask(task.getId());
+
+        ResponseEntity expect = new ResponseEntity("TASK DELETED", HttpStatus.OK);
+        assertEquals(result, expect);
+    }
+
+    @Test
+    public void deleteTask_ShouldReturnHttpStatusBadRequest() {
+        Task task = new Task();
+
+        when(taskServiceMock.taskIdExists(task.getId())).thenReturn(false);
+        ResponseEntity result = taskControllerImpl.deleteTask(task.getId());
+
+        ResponseEntity expect = new ResponseEntity("INVALID REQUEST", HttpStatus.BAD_REQUEST);
+        assertEquals(result, expect);
+    }
+
 }

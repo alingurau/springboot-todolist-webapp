@@ -9,4 +9,11 @@ import java.util.List;
 public interface TaskService {
 
     List<TaskDTO> getAllTasks();
+
+    void saveTask(TaskDTO taskDTO);
+
+    void updateTask(Long id, TaskDTO taskDTO);
+
+    public boolean taskIdExists(Long id);
+
 }

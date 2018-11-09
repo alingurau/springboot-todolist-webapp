@@ -12,7 +12,7 @@ public interface TaskService {
 
     void saveTask(TaskDTO taskDTO);
 
-    void updateTask(Long id, TaskDTO taskDTO);
+    public TaskDTO updateTask(TaskDTO taskDTO, Long id);
 
     void deleteTask(Long id);
 

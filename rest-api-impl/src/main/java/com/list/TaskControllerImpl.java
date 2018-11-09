@@ -31,7 +31,7 @@ public class TaskControllerImpl implements TaskController {
     @Override
     public ResponseEntity editTask(Long id, TaskDTO taskDTO) {
         if (taskService.taskIdExists(id)) {
-            taskService.updateTask(id, taskDTO);
+            taskService.updateTask(taskDTO,id);
             return new ResponseEntity("TASK EDITED", HttpStatus.OK);
         }
         return new ResponseEntity("INVALID INPUT", HttpStatus.BAD_REQUEST);
@@ -39,9 +39,10 @@ public class TaskControllerImpl implements TaskController {
 
     @Override
     public ResponseEntity deleteTask(Long id) {
-        if (taskService.taskIdExists(id)) {
+        if(taskService.taskIdExists(id)){
+
             taskService.deleteTask(id);
-            return new ResponseEntity("TASK DELETED", HttpStatus.OK);
+            return new ResponseEntity("TASK DELETED",HttpStatus.OK);
         }
         return new ResponseEntity("INVALID REQUEST", HttpStatus.BAD_REQUEST);
     }

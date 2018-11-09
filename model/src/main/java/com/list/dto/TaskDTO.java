@@ -7,7 +7,8 @@ public class TaskDTO {
     private Date date;
     private String description;
 
-    public TaskDTO(){}
+    public TaskDTO() {
+    }
 
     public Date getDate() {
         return date;

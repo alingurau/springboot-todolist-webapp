@@ -6,8 +6,9 @@ import com.list.repositories.TaskRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class TaskServiceImpl implements TaskService {
@@ -15,13 +16,13 @@ public class TaskServiceImpl implements TaskService {
     @Autowired
     TaskRepository taskRepository;
 
+
     @Override
     public List<TaskDTO> getAllTasks() {
-        List<TaskDTO> tasks = new ArrayList<>();
-        taskRepository.findAll().forEach(task -> {
-            tasks.add(task.toDTO());
-        });
-        return tasks;
+        return taskRepository.findAll()
+                .stream()
+                .map(Task::toDTO)
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -32,24 +33,25 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void updateTask(Long id, TaskDTO taskDTO) {
-        taskRepository.findById(id);
-        Task task = new Task();
-        task.update(taskDTO);
-        taskRepository.save(task);
+    public TaskDTO updateTask(TaskDTO taskDTO, Long id) {
+        final Optional<Task> dbTask = taskRepository.findById(id);
+
+        if (dbTask.isPresent()) {
+            Task task = dbTask.get();
+            task.setDate(taskDTO.getDate());
+            task.setDescription(taskDTO.getDescription());
+            return taskRepository.save(task).toDTO();
+        }
+        return taskDTO;
     }
 
     @Override
     public void deleteTask(Long id) {
-        taskRepository.findAll().forEach(Task -> {
-            taskRepository.deleteById(id);
-        });
+        taskRepository.deleteById(id);
     }
 
     @Override
     public boolean taskIdExists(Long id) {
         return taskRepository.findById(id).isPresent();
     }
-
-
 }

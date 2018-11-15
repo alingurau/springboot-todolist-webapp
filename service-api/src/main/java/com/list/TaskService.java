@@ -12,10 +12,10 @@ public interface TaskService {
 
     void saveTask(TaskDTO taskDTO);
 
-    public TaskDTO updateTask(TaskDTO taskDTO, Long id);
+    TaskDTO updateTask(TaskDTO taskDTO, Long id);
 
     void deleteTask(Long id);
 
-    public boolean taskIdExists(Long id);
+    boolean taskIdExists(Long id);
 
 }

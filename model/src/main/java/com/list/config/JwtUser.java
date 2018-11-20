@@ -1,8 +1,8 @@
 package com.list.config;
 
 public class JwtUser {
-    private String userName;
     private long id;
+    private String userName;
     private String role;
 
     public void setUserName(String userName) {

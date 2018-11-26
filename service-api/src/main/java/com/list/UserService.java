@@ -9,4 +9,10 @@ import java.util.List;
 public interface UserService {
 
     List<UserDTO> getAllUsers();
+
+    void saveUser(UserDTO userDTO);
+
+    void deleteUser(Long id);
+
+    boolean userIdExists(Long id);
 }

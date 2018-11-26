@@ -6,6 +6,9 @@ public class UserDTO {
     private String lastName;
     private String email;
     private String password;
+    private String userName;
+    private String role;
+    private String deleteFlag;
 
     public String getFirstName() {
         return firstName;
@@ -37,5 +40,29 @@ public class UserDTO {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 }

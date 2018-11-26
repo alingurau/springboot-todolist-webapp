@@ -1,6 +1,7 @@
 package com.list;
 
 import com.list.dto.UserDTO;
+import com.list.entities.User;
 import com.list.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,4 +23,23 @@ public class UserServiceImpl implements UserService {
         });
         return users;
     }
+
+    @Override
+    public void saveUser(UserDTO userDTO) {
+        User user = new User();
+        user.update(userDTO);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void deleteUser(Long id) {
+        userRepository.deleteById(id);
+    }
+
+    @Override
+    public boolean userIdExists(Long id) {
+        return userRepository.findById(id).isPresent();
+    }
+
+
 }

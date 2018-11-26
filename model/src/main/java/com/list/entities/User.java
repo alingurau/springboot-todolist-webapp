@@ -1,6 +1,8 @@
 package com.list.entities;
 
 import com.list.dto.UserDTO;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@SQLDelete(sql = "Update users SET deleted = 'true' where id=?")
+@Where(clause = "deleted != 'true'")
 public class User {
 
     @Id
@@ -17,6 +21,9 @@ public class User {
     private String lastName;
     private String email;
     private String password;
+    private String userName;
+    private String role;
+    private String deleteFlag;
 
     public Long getId() {
         return id;
@@ -56,6 +63,30 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public String getDeleteFlag() {
+        return deleteFlag;
+    }
+
+    public void setDeleteFlag(String deleteFlag) {
+        this.deleteFlag = deleteFlag;
     }
 
     public UserDTO toDTO() {

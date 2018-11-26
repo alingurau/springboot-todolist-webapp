@@ -1,6 +1,8 @@
 package com.list;
 
-import com.list.config.JwtUser;
+import com.list.dto.UserDTO;
+import com.list.entities.JwtAuthenticationToken;
+import com.list.entities.JwtUser;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
@@ -8,5 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/token")
 public interface TokenController {
     @PostMapping
-    String generate(@RequestBody final JwtUser jwtUser);
+    @ResponseBody
+    JwtAuthenticationToken generate(@RequestBody final UserDTO userDTO);
 }

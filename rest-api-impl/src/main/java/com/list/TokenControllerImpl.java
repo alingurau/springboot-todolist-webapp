@@ -1,7 +1,9 @@
 package com.list;
 
-import com.list.config.JwtUser;
+import com.list.dto.UserDTO;
+import com.list.entities.JwtAuthenticationToken;
 import com.list.security.JwtGenerator;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,7 +18,9 @@ public class TokenControllerImpl implements TokenController {
 
 
     @Override
-    public String generate(JwtUser jwtUser) {
-        return jwtGenerator.generate(jwtUser);
+    public JwtAuthenticationToken generate(@RequestBody UserDTO userDTO) {
+        JwtAuthenticationToken jwtAuthenticationToken = new JwtAuthenticationToken(userDTO.getUserName(), userDTO.getPassword());
+        jwtAuthenticationToken.setToken(jwtGenerator.generate(userDTO));
+        return jwtAuthenticationToken;
     }
 }

@@ -4,6 +4,7 @@ import com.list.dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -20,7 +21,7 @@ public class TaskControllerImpl implements TaskController {
     }
 
     @Override
-    public ResponseEntity addTask(TaskDTO taskDTO) {
+    public ResponseEntity addTask(@RequestBody  TaskDTO taskDTO) {
         if (taskDTO != null) {
             taskService.saveTask(taskDTO);
             return new ResponseEntity("TASK ADDED", HttpStatus.CREATED);

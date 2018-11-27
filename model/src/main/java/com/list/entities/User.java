@@ -10,8 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-@SQLDelete(sql = "Update users SET deleted = 'true' where id=?")
-@Where(clause = "deleted != 'true'")
+@SQLDelete(sql = "Update users SET delete_flag = 'true' where id=?")
+@Where(clause = "delete_flag != 'true'")
 public class User {
 
     @Id
@@ -24,6 +24,8 @@ public class User {
     private String userName;
     private String role;
     private String deleteFlag;
+
+
 
     public Long getId() {
         return id;
@@ -95,7 +97,9 @@ public class User {
         userDTO.setLastName(this.lastName);
         userDTO.setEmail(this.email);
         userDTO.setPassword(this.password);
-
+        userDTO.setDeleteFlag(this.deleteFlag);
+        userDTO.setRole(this.role);
+        userDTO.setUserName(this.userName);
         return userDTO;
     }
 
@@ -104,6 +108,9 @@ public class User {
         this.lastName = userDTO.getLastName();
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
+        this.deleteFlag=userDTO.getDeleteFlag();
+        this.role=userDTO.getRole();
+        this.userName=userDTO.getUserName();
     }
 
 }

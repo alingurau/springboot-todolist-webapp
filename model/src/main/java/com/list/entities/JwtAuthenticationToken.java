@@ -17,13 +17,13 @@ public class JwtAuthenticationToken extends UsernamePasswordAuthenticationToken 
         this.token = token;
     }
 
-    @Override
-    public Object getCredentials() {
-        return null;
-    }
-
-    @Override
-    public Object getPrincipal() {
-        return null;
-    }
+//    @Override
+//    public Object getCredentials() {
+//        return null;
+//    }
+//
+//    @Override
+//    public Object getPrincipal() {
+//        return getCredentials();
+//    }
 }

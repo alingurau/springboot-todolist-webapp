@@ -1,7 +1,6 @@
 package com.list.security;
 
 import com.list.dto.UserDTO;
-import com.list.entities.JwtUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

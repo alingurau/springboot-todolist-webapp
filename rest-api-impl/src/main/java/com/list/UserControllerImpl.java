@@ -22,7 +22,6 @@ public class UserControllerImpl implements UserController {
 
     @Override
     public ResponseEntity addUser(@RequestBody UserDTO userDTO) {
-        System.out.println(userDTO.getEmail());
         if (userDTO != null) {
             userService.saveUser(userDTO);
             return new ResponseEntity("USER ADDED", HttpStatus.CREATED);

@@ -4,6 +4,7 @@ import com.list.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -30,7 +31,7 @@ public class UserControllerImpl implements UserController {
     }
 
     @Override
-    public ResponseEntity deleteUser(Long id) {
+    public ResponseEntity deleteUser(@PathVariable Long id) {
         if (userService.userIdExists(id)) {
             userService.deleteUser(id);
             return new ResponseEntity("USER DELETED", HttpStatus.OK);

@@ -8,7 +8,7 @@ public class UserDTO {
     private String password;
     private String userName;
     private String role;
-    private String deleteFlag;
+    private boolean deleteFlag;
 
     public String getFirstName() {
         return firstName;
@@ -58,11 +58,11 @@ public class UserDTO {
         this.role = role;
     }
 
-    public String getDeleteFlag() {
+    public boolean isDeleteFlag() {
         return deleteFlag;
     }
 
-    public void setDeleteFlag(String deleteFlag) {
+    public void setDeleteFlag(boolean deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
 }

@@ -1,17 +1,15 @@
 package com.list.entities;
 
 import com.list.dto.UserDTO;
+import org.hibernate.annotations.ResultCheckStyle;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
-@SQLDelete(sql = "Update users SET delete_flag = 'true' where id=?")
-@Where(clause = "delete_flag != 'true'")
+@SQLDelete(sql = "UPDATE user SET delete_flag = 'DELETED' WHERE id = ?", check = ResultCheckStyle.COUNT)
+@Where(clause = "delete_flag != 'DELETED'")
 public class User {
 
     @Id
@@ -23,8 +21,7 @@ public class User {
     private String password;
     private String userName;
     private String role;
-    private String deleteFlag;
-
+    private boolean deleteFlag;
 
 
     public Long getId() {
@@ -83,11 +80,11 @@ public class User {
         this.role = role;
     }
 
-    public String getDeleteFlag() {
+    public boolean isDeleteFlag() {
         return deleteFlag;
     }
 
-    public void setDeleteFlag(String deleteFlag) {
+    public void setDeleteFlag(boolean deleteFlag) {
         this.deleteFlag = deleteFlag;
     }
 
@@ -97,9 +94,9 @@ public class User {
         userDTO.setLastName(this.lastName);
         userDTO.setEmail(this.email);
         userDTO.setPassword(this.password);
-        userDTO.setDeleteFlag(this.deleteFlag);
         userDTO.setRole(this.role);
         userDTO.setUserName(this.userName);
+        userDTO.setDeleteFlag(this.deleteFlag);
         return userDTO;
     }
 
@@ -108,9 +105,9 @@ public class User {
         this.lastName = userDTO.getLastName();
         this.email = userDTO.getEmail();
         this.password = userDTO.getPassword();
-        this.deleteFlag=userDTO.getDeleteFlag();
         this.role=userDTO.getRole();
         this.userName=userDTO.getUserName();
+        this.deleteFlag=userDTO.isDeleteFlag();
     }
 
 }

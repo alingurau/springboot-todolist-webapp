@@ -25,13 +25,6 @@ public class TaskServiceImpl implements TaskService {
                 .collect(Collectors.toList());
     }
 
-
-
-
-
-
-
-
     @Override
     public void saveTask(TaskDTO taskDTO) {
         Task task = new Task();

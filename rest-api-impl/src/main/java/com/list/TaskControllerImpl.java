@@ -4,6 +4,7 @@ import com.list.dto.TaskDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,7 +40,7 @@ public class TaskControllerImpl implements TaskController {
     }
 
     @Override
-    public ResponseEntity deleteTask(Long id) {
+    public ResponseEntity deleteTask(@PathVariable Long id) {
         if(taskService.taskIdExists(id)){
 
             taskService.deleteTask(id);

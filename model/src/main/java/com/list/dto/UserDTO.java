@@ -1,5 +1,10 @@
 package com.list.dto;
 
+import com.list.entities.Role;
+
+import java.util.HashSet;
+import java.util.Set;
+
 public class UserDTO {
 
     private String firstName;
@@ -7,7 +12,7 @@ public class UserDTO {
     private String email;
     private String password;
     private String userName;
-    private String role;
+    private Set<Role> roles = new HashSet<>();
     private boolean deleteFlag;
 
     public String getFirstName() {
@@ -50,12 +55,12 @@ public class UserDTO {
         this.userName = userName;
     }
 
-    public String getRole() {
-        return role;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     public boolean isDeleteFlag() {
